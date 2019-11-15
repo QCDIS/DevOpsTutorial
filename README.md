@@ -118,3 +118,6 @@ Define the Student's object properties. The properties to set are:
 | first_name    | string			|  
 | last_name     | string			| 
 | last_name     | string			| 
+| grades	| map				| 
+
+You can find details about data models here: https://swagger.io/docs/specification/data-models/
