@@ -119,3 +119,9 @@ In the swagger editor go to 'Generate Server' and select 'python-flask'
 
 <img src="/images/swagger5.png" alt="swagger"
 	title="swagger" width="550"/>
+	
+Update the requirements files to look like this:
+ [requirements.txt](https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/req/python-flask-server-generated/python-flask-server/requirements.txt)
+ 
+[test-requirements.txt](https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/req/python-flask-server-generated/python-flask-server/test-requirements.txt)
+  
