@@ -101,7 +101,7 @@ definitions:
         additionalProperties:
           type: "string"
     example:
-      graddes:
+      grades:
         key: "graddes"
       student_id: 0
       last_name: "last_name"
