@@ -171,5 +171,7 @@ You should see something like this:
 
 ### Write Unit Tests
 ### Python
+The code generated has also created a TestCase. Go to 'python-flask-server-generated/python-flask-server/swagger_server/test' and open the 'test_default_controller.py' file. 
+There you can add the test 'test_add_student'. Here is the [test_default_controller.py]
 
 
