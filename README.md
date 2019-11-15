@@ -22,6 +22,7 @@ The existing code is quite complex for a first hands-on. Clear the code:
 	title="swagger" width="550"/>
 
 Paste the following code into the editor:
+[swagger_1.yaml](swagger/swagger_1.yaml)
 
 ```YAML
 swagger: "2.0"
@@ -121,3 +122,5 @@ Define the Student's object properties. The properties to set are:
 | grades	| map				| 
 
 You can find details about data models here: https://swagger.io/docs/specification/data-models/
+
+You can find the solution here: 
