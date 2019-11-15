@@ -126,3 +126,12 @@ Update the requirements files to look like this:
  
 * [test-requirements.txt](https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/req/python-flask-server-generated/python-flask-server/test-requirements.txt)
   
+
+#### Commit Code to Git
+Go to the directory of the code and add, commit and push the  code: 
+```
+git add .
+git commit -m "<your message here>"
+git push
+```
+More information on git can be found here: https://www.tutorialspoint.com/git/index.htm
