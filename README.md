@@ -135,3 +135,16 @@ git commit -m "<your message here>"
 git push
 ```
 More information on git can be found here: https://www.tutorialspoint.com/git/index.htm
+
+
+#### Create Python Virtual Environment
+Go to your local folder in 'python-flask-server-generated' and create a new Python Virtual Environment:
+```
+python3 -m venv venv
+```
+More infromation on Python Virtual Environment can be found here: https://docs.python.org/3/tutorial/venv.html
+
+#### Add Edit .gitignore file 
+Beacuse you don't want to push the entire venv folder in git add/edit the '.gitignore' file to look like this:
+
+[.gitignore](https://github.com/skoulouzis/DevOpsTutorial/blob/req/python-flask-server-generated/.gitignore)
