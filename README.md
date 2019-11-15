@@ -62,4 +62,39 @@ Define the Student's object properties. The properties to set are:
 
 You can find details about data models here: https://swagger.io/docs/specification/data-models/
 
-You can find the solution here: [swagger_1.yaml](swagger/swagger_2.yaml)
+The definition sould looke like this: [swagger_1.yaml](swagger/swagger_2.yaml)
+
+### Add more methods
+The API definition at the moment only has 'GET' and 'POST' methdos. We will add a 'DELETE' method and update 'GET' to include queries
+Before the 'definitions' node add the following:
+```YAML
+    delete:
+      description: ""
+      operationId: "deleteStudent"
+      produces:
+      - "application/xml"
+      - "application/json"   
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Student"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "student not found"  
+```
+You will notice that the editor is throwing an error:
+```
+Errors
+Hide
+ 
+Semantic error at paths./pet/{student_id}
+Declared path parameter "student_id" needs to be defined within every operation in the path (missing in "delete"), or moved to the path-level parameters object
+Jump to line 31
+```
+#### Exersise 
+Fix the 'DELETE' method to remove this error
+
+After you fix the error the definition sould looke like this: [swagger.yaml](swagger/swagger_3.yaml)
+
