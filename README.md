@@ -149,7 +149,7 @@ Beacuse you don't want to push the entire venv folder in git add/edit the '.giti
 
 [.gitignore](https://github.com/skoulouzis/DevOpsTutorial/blob/req/python-flask-server-generated/.gitignore)
 
-#### Install Requirements 
+#### Install Requirements and Run
 Go to python-flask-server-generated and install the project requirements :
 ```
 ./venv/bin/pip3 install --no-cache-dir -r python-flask-server/requirements.txt
@@ -157,5 +157,10 @@ Go to python-flask-server-generated and install the project requirements :
 and the test requirements:
 ```
 ./venv/bin/pip3 install --no-cache-dir -r python-flask-server/test-requirements.txt
+```
+Go to python-flask-server-generated/python-flask-server
+Run the service:
+```
+../venv/bin/python3 -m swagger_server
 ```
 
