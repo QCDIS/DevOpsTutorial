@@ -20,6 +20,7 @@ class TestDefaultController(BaseTestCase):
         body = Student()
         body.first_name = 'Andrea'
         body.last_name = 'Lopez'
+        body.grades = {'math': 8, 'history': 9}
         response = self.client.open(
             '/service-api/student',
             method='POST',
@@ -42,4 +43,5 @@ class TestDefaultController(BaseTestCase):
 
 if __name__ == '__main__':
     import unittest
+
     unittest.main()
