@@ -8,21 +8,21 @@ To get an understanding of Swagger and OpenAPI you may follow this tutorial till
 Open the swagger editor : http://editor.swagger.io/# .  You should see the ‘Swagger Petstore’ example. 
 
 ### Set up example code
-<img src="/images/swagger1.png" alt="swagger"
+<img src="https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/req/images/swagger1.png" alt="swagger"
 	title="swagger" width="550"/>
 	
 The existing code is quite complex for a first hands-on. Clear the code:
 
 
-<img src="/images/swagger2.png" alt="swagger"
+<img src="https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/req/images/swagger2.png" alt="swagger"
 	title="swagger" width="550"/>
 	
 	
-<img src="/images/swagger3.png" alt="swagger"
+<img src="https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/req/images/swagger3.png" alt="swagger"
 	title="swagger" width="550"/>
 
 Paste the following code into the editor:
-[swagger.yaml](swagger/swagger_1.yaml)
+[swagger.yaml](https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/req/swagger/swagger_1.yaml)
 
 You will notice that the editor throws two errors: 
 ```
@@ -34,7 +34,7 @@ Semantic error at paths./pet/{student_id}.get.responses.200.schema.$ref
 $refs must reference a valid location in the document
 Jump to line 52
 ```
-<img src="/images/swagger4.png" alt="swagger"
+<img src="https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/req/images/swagger4.png" alt="swagger"
 	title="swagger" width="550"/>
 
 Efectivly what is said here is that the "#/definitions/Student" is not defined. 
@@ -62,7 +62,7 @@ Define the Student's object properties. The properties to set are:
 
 You can find details about data models here: https://swagger.io/docs/specification/data-models/
 
-The definition sould looke like this: [swagger.yaml](swagger/swagger_2.yaml)
+The definition sould looke like this: [swagger.yaml](https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/req/swagger/swagger_2.yaml)
 
 ### Add Delete method
 The API definition at the moment only has 'GET' and 'POST' methdos. We will add a 'DELETE' method 
@@ -96,7 +96,7 @@ Jump to line 31
 #### Exersise 
 Fix the 'DELETE' method to remove this error
 
-After you fix the error the definition sould looke like this: [swagger.yaml](swagger/swagger_3.yaml)
+After you fix the error the definition sould looke like this: [swagger.yaml](https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/req/swagger/swagger_3.yaml)
 
 
 ### Add Query Parametres to Grt
@@ -109,7 +109,7 @@ In the 'parameters' node add the following:
         required: false
         type: "string"  
 ```
-The definition sould looke like this: [swagger.yaml](swagger/swagger_4.yaml)
+The definition sould looke like this: [swagger.yaml](https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/req/swagger/swagger_4.yaml)
 
 ### Generate the Server Code 
 ### Python-flask 
@@ -138,7 +138,7 @@ More information on git can be found here: https://www.tutorialspoint.com/git/in
 
 
 #### Create Python Virtual Environment
-Go to your local folder in 'python-flask-server-generated' and create a new Python Virtual Environment:
+Go to your local folder in 'python-flask-server-generated/python-flask-server' and create a new Python Virtual Environment:
 ```
 python3 -m venv venv
 ```
@@ -150,9 +150,9 @@ Beacuse you don't want to push the entire venv folder in git add/edit the '.giti
 [.gitignore](https://github.com/skoulouzis/DevOpsTutorial/blob/req/python-flask-server-generated/.gitignore)
 
 #### Install Requirements and Run
-Go to python-flask-server-generated and install the project requirements :
+Go to 'python-flask-server-generated/python-flask-server' and install the project requirements :
 ```
-./venv/bin/pip3 install --no-cache-dir -r python-flask-server/requirements.txt
+./venv/bin/pip3 install --no-cache-dir -r requirements.txt
 ```
 and the test requirements:
 ```
@@ -161,6 +161,7 @@ and the test requirements:
 Go to python-flask-server-generated/python-flask-server
 Run the service:
 ```
-../venv/bin/python3 -m swagger_server
+./venv/bin/python3 -m swagger_server
 ```
+Go to: http://localhost:8080/service-api/ui/ 
 
