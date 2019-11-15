@@ -15,7 +15,7 @@ class Student(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, student_id: int=None, first_name: str=None, last_name: str=None, graddes: Dict[str, str]=None):  # noqa: E501
+    def __init__(self, student_id: int=None, first_name: str=None, last_name: str=None, grades: Dict[str, str]=None):  # noqa: E501
         """Student - a model defined in Swagger
 
         :param student_id: The student_id of this Student.  # noqa: E501
@@ -24,27 +24,27 @@ class Student(Model):
         :type first_name: str
         :param last_name: The last_name of this Student.  # noqa: E501
         :type last_name: str
-        :param graddes: The graddes of this Student.  # noqa: E501
-        :type graddes: Dict[str, str]
+        :param grades: The grades of this Student.  # noqa: E501
+        :type grades: Dict[str, str]
         """
         self.swagger_types = {
             'student_id': int,
             'first_name': str,
             'last_name': str,
-            'graddes': Dict[str, str]
+            'grades': Dict[str, str]
         }
 
         self.attribute_map = {
             'student_id': 'student_id',
             'first_name': 'first_name',
             'last_name': 'last_name',
-            'graddes': 'graddes'
+            'grades': 'grades'
         }
 
         self._student_id = student_id
         self._first_name = first_name
         self._last_name = last_name
-        self._graddes = graddes
+        self._grades = grades
 
     @classmethod
     def from_dict(cls, dikt) -> 'Student':
@@ -121,22 +121,22 @@ class Student(Model):
         self._last_name = last_name
 
     @property
-    def graddes(self) -> Dict[str, str]:
-        """Gets the graddes of this Student.
+    def grades(self) -> Dict[str, str]:
+        """Gets the grades of this Student.
 
 
-        :return: The graddes of this Student.
+        :return: The grades of this Student.
         :rtype: Dict[str, str]
         """
-        return self._graddes
+        return self._grades
 
-    @graddes.setter
-    def graddes(self, graddes: Dict[str, str]):
-        """Sets the graddes of this Student.
+    @grades.setter
+    def grades(self, grades: Dict[str, str]):
+        """Sets the grades of this Student.
 
 
-        :param graddes: The graddes of this Student.
-        :type graddes: Dict[str, str]
+        :param grades: The grades of this Student.
+        :type grades: Dict[str, str]
         """
 
-        self._graddes = graddes
+        self._grades = grades
