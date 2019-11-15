@@ -110,3 +110,12 @@ In the 'parameters' node add the following:
         type: "string"  
 ```
 The definition sould looke like this: [swagger.yaml](swagger/swagger_4.yaml)
+
+### Generate the Server Code 
+### Python-flask 
+
+In the swagger editor go to 'Generate Server' and select 'python-flask'
+
+
+<img src="/images/swagger5.png" alt="swagger"
+	title="swagger" width="550"/>
