@@ -22,7 +22,7 @@ The existing code is quite complex for a first hands-on. Clear the code:
 	title="swagger" width="550"/>
 
 Paste the following code into the editor:
-[swagger_1.yaml](swagger/swagger_1.yaml)
+[swagger.yaml](swagger/swagger_1.yaml)
 
 You will notice that the editor throws two errors: 
 ```
@@ -62,10 +62,10 @@ Define the Student's object properties. The properties to set are:
 
 You can find details about data models here: https://swagger.io/docs/specification/data-models/
 
-The definition sould looke like this: [swagger_1.yaml](swagger/swagger_2.yaml)
+The definition sould looke like this: [swagger.yaml](swagger/swagger_2.yaml)
 
-### Add more methods
-The API definition at the moment only has 'GET' and 'POST' methdos. We will add a 'DELETE' method and update 'GET' to include queries
+### Add Delete method
+The API definition at the moment only has 'GET' and 'POST' methdos. We will add a 'DELETE' method 
 Before the 'definitions' node add the following:
 ```YAML
     delete:
@@ -98,3 +98,15 @@ Fix the 'DELETE' method to remove this error
 
 After you fix the error the definition sould looke like this: [swagger.yaml](swagger/swagger_3.yaml)
 
+
+### Add Query Parametres to Grt
+We will update the get method to include query parametres
+In the 'parameters' node add the following:
+```YAML
+      - name: "subject"
+        in: "query"
+        description: "The subject name"
+        required: false
+        type: "string"  
+```
+The definition sould looke like this: [swagger.yaml](swagger/swagger_4.yaml)
