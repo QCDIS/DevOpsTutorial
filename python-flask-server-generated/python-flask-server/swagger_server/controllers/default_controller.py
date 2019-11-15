@@ -25,8 +25,23 @@ def delete_student(student_id):  # noqa: E501
 
      # noqa: E501
 
-    :param student_id: ID of pet to return
+    :param student_id: ID of student to return
     :type student_id: int
+
+    :rtype: Student
+    """
+    return 'do some magic!'
+
+
+def get_student_by_id(student_id, subject=None):  # noqa: E501
+    """Find student by ID
+
+    Returns a single student # noqa: E501
+
+    :param student_id: ID of student to return
+    :type student_id: int
+    :param subject: The subject name
+    :type subject: str
 
     :rtype: Student
     """

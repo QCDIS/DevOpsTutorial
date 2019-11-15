@@ -30,12 +30,10 @@ paths:
         405:
           description: "Invalid input"
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
-  /pet/{student_id}:
+  /student/{student_id}:
     get:
-      tags:
-      - "pet"
       summary: "Find student by ID"
-      description: "Returns a single pet"
+      description: "Returns a single student"
       operationId: "get_student_by_id"
       produces:
       - "application/xml"
@@ -43,7 +41,7 @@ paths:
       parameters:
       - name: "student_id"
         in: "path"
-        description: "ID of pet to return"
+        description: "ID of student to return"
         required: true
         type: "integer"
         format: "int64"
@@ -61,7 +59,7 @@ paths:
           description: "Invalid ID supplied"
         404:
           description: "student not found"
-      x-swagger-router-controller: "swagger_server.controllers.pet_controller"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
     delete:
       description: ""
       operationId: "delete_student"
@@ -71,7 +69,7 @@ paths:
       parameters:
       - name: "student_id"
         in: "path"
-        description: "ID of pet to return"
+        description: "ID of student to return"
         required: true
         type: "integer"
         format: "int64"
@@ -96,13 +94,13 @@ definitions:
         type: "string"
       last_name:
         type: "string"
-      grades:
+      graddes:
         type: "object"
         additionalProperties:
           type: "string"
     example:
-      grades:
-        key: "grades"
+      graddes:
+        key: "graddes"
       student_id: 0
       last_name: "last_name"
       first_name: "first_name"
