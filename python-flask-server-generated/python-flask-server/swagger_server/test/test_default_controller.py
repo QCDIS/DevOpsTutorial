@@ -18,6 +18,8 @@ class TestDefaultController(BaseTestCase):
         Add a new student
         """
         body = Student()
+        body.first_name = 'Andrea'
+        body.last_name = 'Lopez'
         response = self.client.open(
             '/service-api/student',
             method='POST',
