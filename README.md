@@ -79,15 +79,20 @@ paths:
           description: "Invalid ID supplied"
         404:
           description: "Pet not found"
-definitions:
-  Student:
-    type: "object"
-    properties:
-      student_id:
-        type: "integer"
-        format: "int64"
 
 ```
 
+You will notice that the editor throws two errors: 
+```
+Errors 
+Semantic error at paths./student.post.parameters.0.schema.$ref
+$refs must reference a valid location in the document
+Jump to line 27
+Semantic error at paths./pet/{student_id}.get.responses.200.schema.$ref
+$refs must reference a valid location in the document
+Jump to line 52
+```
+<img src="/images/swagger4.png" alt="swagger"
+	title="swagger" width="550"/>
 
 
