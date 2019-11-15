@@ -164,4 +164,10 @@ Run the service:
 ./venv/bin/python3 -m swagger_server
 ```
 Go to: http://localhost:8080/service-api/ui/ 
+You should see something like this:
+<img src="
+https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/req/images/swagger-ui.png" alt="swagger"
+	title="swagger" width="550"/>
+	
+
 
