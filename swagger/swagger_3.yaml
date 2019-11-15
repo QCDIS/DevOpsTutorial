@@ -86,7 +86,7 @@ definitions:
         type: "string"
       last_name:
         type: "string"        
-      graddes:
+      grades:
         type: object
         additionalProperties:
           type: string        
