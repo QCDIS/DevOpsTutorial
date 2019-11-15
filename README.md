@@ -7,6 +7,7 @@ To get an understanding of Swagger and OpenAPI you may follow this tutorial till
 ### Hands On
 Open the swagger editor : http://editor.swagger.io/# .  You should see the ‘Swagger Petstore’ example. 
 
+### Set up example code
 <img src="/images/swagger1.png" alt="swagger"
 	title="swagger" width="550"/>
 	
@@ -94,5 +95,18 @@ Jump to line 52
 ```
 <img src="/images/swagger4.png" alt="swagger"
 	title="swagger" width="550"/>
+
+Efectivly what is said here is that the "#/definitions/Student" is not defined. 
+You can find more about '$ref' here: https://swagger.io/docs/specification/using-ref/
+
+### Define Objects
+Scorll down to the bottom of the page and create a new node called 'definitions' and a node 'Student' under that. The code should look like this:
+```YAML
+  definitions:
+    Student:
+    type: "object"
+    properties:  
+```
+
 
 
