@@ -96,13 +96,13 @@ definitions:
         type: "string"
       last_name:
         type: "string"
-      graddes:
+      grades:
         type: "object"
         additionalProperties:
           type: "string"
     example:
-      graddes:
-        key: "graddes"
+      grades:
+        key: "grades"
       student_id: 0
       last_name: "last_name"
       first_name: "first_name"
