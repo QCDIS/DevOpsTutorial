@@ -108,5 +108,10 @@ Scorll down to the bottom of the page and create a new node called 'definitions'
     properties:  
 ```
 
-
-
+#### Exersise 
+Define the Student's object properties. The properties to set are:
+| Property Name        | Type|
+| ------------- |:-------------:|
+| student_id      | integer (int64 format) |
+| first_name      | string      | 
+| last_name | string      |
