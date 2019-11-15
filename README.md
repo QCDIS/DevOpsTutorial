@@ -24,66 +24,6 @@ The existing code is quite complex for a first hands-on. Clear the code:
 Paste the following code into the editor:
 [swagger_1.yaml](swagger/swagger_1.yaml)
 
-```YAML
-swagger: "2.0"
-info:
-  description: "Swagger tutorial"
-  version: "1.0.0"
-  title: "Swagger tutorial"
-basePath: "/service-api"
-schemes:
-- "http"
-paths:
-  /student:
-    post:
-      summary: "Add a new student"
-      description: ""
-      operationId: "addStudent"
-      consumes:
-      - "application/json"
-      - "application/xml"
-      produces:
-      - "application/xml"
-      - "application/json"
-      parameters:
-      - in: "body"
-        name: "body"
-        description: "Student object that needs to be added"
-        required: true
-        schema:
-          $ref: "#/definitions/Student"
-      responses:
-        405:
-          description: "Invalid input"
-  /pet/{student_id}:
-    get:
-      tags:
-      - "pet"
-      summary: "Find student by ID"
-      description: "Returns a single pet"
-      operationId: "getStudentById"
-      produces:
-      - "application/xml"
-      - "application/json"
-      parameters:
-      - name: "student_id"
-        in: "path"
-        description: "ID of pet to return"
-        required: true
-        type: "integer"
-        format: "int64"
-      responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/Student"
-        400:
-          description: "Invalid ID supplied"
-        404:
-          description: "Pet not found"
-
-```
-
 You will notice that the editor throws two errors: 
 ```
 Errors 
@@ -103,10 +43,10 @@ You can find more about '$ref' here: https://swagger.io/docs/specification/using
 ### Define Objects
 Scorll down to the bottom of the page and create a new node called 'definitions' and a node 'Student' under that. The code should look like this:
 ```YAML
-  definitions:
-    Student:
+definitions:
+  Student:
     type: "object"
-    properties:  
+    properties:
 ```
 
 #### Exersise 
@@ -118,9 +58,8 @@ Define the Student's object properties. The properties to set are:
 | student_id    | integer (int64 format)	| 
 | first_name    | string			|  
 | last_name     | string			| 
-| last_name     | string			| 
 | grades	| map				| 
 
 You can find details about data models here: https://swagger.io/docs/specification/data-models/
 
-You can find the solution here: 
+You can find the solution here: [swagger_1.yaml](swagger/swagger_2.yaml)
