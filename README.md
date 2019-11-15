@@ -148,3 +148,14 @@ More infromation on Python Virtual Environment can be found here: https://docs.p
 Beacuse you don't want to push the entire venv folder in git add/edit the '.gitignore' file to look like this:
 
 [.gitignore](https://github.com/skoulouzis/DevOpsTutorial/blob/req/python-flask-server-generated/.gitignore)
+
+#### Install Requirements 
+Go to python-flask-server-generated and install the project requirements :
+```
+./venv/bin/pip3 install --no-cache-dir -r python-flask-server/requirements.txt
+```
+and the test requirements:
+```
+./venv/bin/pip3 install --no-cache-dir -r python-flask-server/test-requirements.txt
+```
+
