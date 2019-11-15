@@ -115,3 +115,10 @@ Define the Student's object properties. The properties to set are:
 | student_id      | integer (int64 format) |
 | first_name      | string      | 
 | last_name | string      |
+
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
