@@ -110,15 +110,11 @@ Scorll down to the bottom of the page and create a new node called 'definitions'
 
 #### Exersise 
 Define the Student's object properties. The properties to set are:
-| Property Name        | Type|
-| ------------- |:-------------:|
-| student_id      | integer (int64 format) |
-| first_name      | string      | 
-| last_name | string      |
 
 
-| Property Name | Type          |
-| ------------- |:-------------:| 
-| col 3 is      | right-aligned | 
-| col 2 is      | centered      |  
-| zebra stripes | are neat      | 
+| Property Name | Type          		|
+| ------------- |:-------------:		| 
+| student_id    | integer (int64 format)	| 
+| first_name    | string			|  
+| last_name     | string			| 
+| last_name     | string			| 
