@@ -37,11 +37,11 @@ Jump to line 52
 <img src="https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/req/images/swagger4.png" alt="swagger"
 	title="swagger" width="550"/>
 
-Efectivly what is said here is that the "#/definitions/Student" is not defined. 
+Effectively what is said here is that the "#/definitions/Student" is not defined. 
 You can find more about '$ref' here: https://swagger.io/docs/specification/using-ref/
 
 ### Define Objects
-Scorll down to the bottom of the page and create a new node called 'definitions' and a node 'Student' under that. The code should look like this:
+Scroll down to the bottom of the page and create a new node called 'definitions' and a node 'Student' under that. The code should look like this:
 ```YAML
 definitions:
   Student:
@@ -49,7 +49,7 @@ definitions:
     properties:
 ```
 
-#### Exersise 
+#### Exercise 
 Define the Student's object properties. The properties to set are:
 
 
@@ -96,7 +96,7 @@ Jump to line 31
 #### Exersise 
 Fix the 'DELETE' method to remove this error
 
-After you fix the error the definition sould looke like this: [swagger.yaml](https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/req/swagger/swagger_3.yaml)
+After you fix the error the definition should look like this: [swagger.yaml](https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/req/swagger/swagger_3.yaml)
 
 
 ### Add Query Parametres to Grt
@@ -109,7 +109,7 @@ In the 'parameters' node add the following:
         required: false
         type: "string"  
 ```
-The definition sould looke like this: [swagger.yaml](https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/req/swagger/swagger_4.yaml)
+The definition should look like this: [swagger.yaml](https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/req/swagger/swagger_4.yaml)
 
 ### Generate the Server Code 
 ### Python-flask 
@@ -204,5 +204,41 @@ There you can add the test 'test_add_student'. Here is the [test_default_control
 
 #### Exersise 
 Write the 'test_delete_student' test.
-After you wrote the test it should look like this: [test_default_controller.py]
+After you wrote the test it should look like this: [test_default_controller.py](https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/test_delete/python-flask-server-generated/python-flask-server/swagger_server/test/test_default_controller.py)
+
+After you are done commit the code.
+
+### Develop The Application Logic 
+Write the code for the get, delete and put methods. 
+
+In general it is a good idea to write application using layred architecture. By segregating an application into tiers, a developer can modifying or adding a layer, instead of reworking the entire application. 
+
+This is why we should create a new package in the code called 'service' and a python file named 'student_service.py'. Here is a template of such a file: [student_service.py](https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/student_service/python-flask-server-generated/python-flask-server/swagger_server/service/student_service.py)
+
+Now the controller just needs to call the service's methods: (default_controller.py)[https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/student_service/python-flask-server-generated/python-flask-server/swagger_server/controllers/default_controller.py]
+
+
+After you are done commit the code.
+
+#### Create a Board
+All code repositories have some kind of board to manage projects. In github Got to 'Projects' and create one. Next go to 'issues' and create three issues: 'develop add_student', 'develop delete_student', 'develop get_student_by_id'. Assign each issue to one person and go back to the project you just created and add the issues to the board in the 'To do' column. 
+
+
+#### Create a branch and Merage 
+Check out the master branch. 
+```
+git checkout master
+```
+Create the issue branch 
+```
+git checkout -b iss3
+```
+
+Develop the code and commit to your branch 
+```
+git add .
+git commit -a -m 'added a get_student_by_id [issue 3]'
+git push
+```
+As soon as you have fixed the  issue assigned to you ask for a pull request 
 
