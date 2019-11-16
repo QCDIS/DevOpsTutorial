@@ -1,12 +1,11 @@
 # coding: utf-8
 
 from __future__ import absolute_import
-from datetime import date, datetime  # noqa: F401
 
-from typing import List, Dict  # noqa: F401
+from typing import Dict  # noqa: F401
 
-from swagger_server.models.base_model_ import Model
 from swagger_server import util
+from swagger_server.models.base_model_ import Model
 
 
 class Student(Model):
@@ -15,7 +14,8 @@ class Student(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, student_id: int=None, first_name: str=None, last_name: str=None, grades: Dict[str, str]=None):  # noqa: E501
+    def __init__(self, student_id: int = None, first_name: str = None, last_name: str = None,
+                 grades: Dict[str, str] = None):  # noqa: E501
         """Student - a model defined in Swagger
 
         :param student_id: The student_id of this Student.  # noqa: E501
