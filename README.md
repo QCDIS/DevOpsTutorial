@@ -242,3 +242,9 @@ git push
 ```
 As soon as you have fixed the  issue assigned to you ask for a pull request 
 
+
+# Continues Testing and Integration 
+## Jenkins File 
+
+https://jenkins.io/doc/book/pipeline/jenkinsfile/
+
