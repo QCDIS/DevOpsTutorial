@@ -125,6 +125,34 @@ Update the requirements files to look like this:
 * [requirements.txt](https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/req/python-flask-server-generated/python-flask-server/requirements.txt)
  
 * [test-requirements.txt](https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/req/python-flask-server-generated/python-flask-server/test-requirements.txt)
+
+Also the generated code comes with a bug in 'util.py' in the '_deserialize' method. Replace the code for the  '_deserialize' method with this:
+```Python
+def _deserialize(data, klass):
+    """Deserializes dict, list, str into an object.
+    :param data: dict, list or str.
+    :param klass: class literal, or string of class name.
+    :return: object.
+    """
+    if data is None:
+        return None
+
+    if klass in six.integer_types or klass in (float, str, bool):
+        return _deserialize_primitive(data, klass)
+    elif klass == object:
+        return _deserialize_object(data)
+    elif klass == datetime.date:
+        return deserialize_date(data)
+    elif klass == datetime.datetime:
+        return deserialize_datetime(data)
+    elif hasattr(klass, '__origin__'):
+        if klass.__origin__ == list:
+            return _deserialize_list(data, klass.__args__[0])
+        if klass.__origin__ == dict:
+            return _deserialize_dict(data, klass.__args__[1])
+    else:
+        return deserialize_model(data, klass)
+```
   
 
 #### Commit Code to Git
