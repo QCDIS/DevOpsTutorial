@@ -14,7 +14,7 @@ student_db = TinyDB(db_file_path)
 def add_student(student):
     doc_id = student_db.insert(student)
     student.student_id = doc_id
-    
+
     return student
 
 
