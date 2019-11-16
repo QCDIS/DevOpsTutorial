@@ -15,3 +15,7 @@ def add_student(student):
     doc_id = student_db.insert(student)
     student.student_id = doc_id
     return student
+
+
+def get_student_by_id(tudent_id):
+    pass

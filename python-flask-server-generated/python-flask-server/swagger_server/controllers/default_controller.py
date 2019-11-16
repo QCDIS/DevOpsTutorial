@@ -45,4 +45,4 @@ def get_student_by_id(student_id, subject=None):  # noqa: E501
 
     :rtype: Student
     """
-    return student_service.delete_student(student_id,subject=subject)
+    return student_service.get_student_by_id(student_id,subject=subject)
