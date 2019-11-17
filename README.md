@@ -254,4 +254,9 @@ As soon as you have fixed the  issue assigned to you ask for a pull request
 ## Jenkins File 
 
 https://jenkins.io/doc/book/pipeline/jenkinsfile/
+(Jenkinsfile)[https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/CI-CD/python-flask-server-generated/python-flask-server/Jenkinsfile]
+
+## Docker
+(Dockerfile)[https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/CI-CD/python-flask-server-generated/python-flask-server/Dockerfile]
+
 
