@@ -2,9 +2,9 @@
 Define a simple REST API with OpenAPI and Swagger, write REST API tests using Postman, develop the application logic, dockerize it and finally perform continuous integration (CI) 
 
 ## Prerequisites
-* git
+* git and Github/Gitlab/Bitbuacket account 
 * Python3.7 
-* Docker
+* Docker and dockerhub account 
 
 ## Write the API definitions
 To get an understanding of Swagger and OpenAPI you may follow this tutorial till part 5: https://apihandyman.io/writing-openapi-swagger-specification-tutorial-part-1-introduction/. 
