@@ -252,8 +252,8 @@ As soon as you have fixed the  issue assigned to you ask for a pull request
 
 # Continues Testing and Integration 
 ## Jenkins File 
+Material on Jenkinsfile and Jenkins pipeline can be found here: https://jenkins.io/doc/book/pipeline/jenkinsfile/
 
-https://jenkins.io/doc/book/pipeline/jenkinsfile/
 [Jenkinsfile](https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/CI-CD/python-flask-server-generated/python-flask-server/Jenkinsfile)
 
 ## Docker
