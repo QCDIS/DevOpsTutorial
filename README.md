@@ -222,7 +222,7 @@ In general it is a good idea to write application using layred architecture. By 
 
 This is why we should create a new package in the code called 'service' and a python file named 'student_service.py'. Here is a template of such a file: [student_service.py](https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/student_service/python-flask-server-generated/python-flask-server/swagger_server/service/student_service.py)
 
-Now the controller just needs to call the service's methods: (default_controller.py)[https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/student_service/python-flask-server-generated/python-flask-server/swagger_server/controllers/default_controller.py]
+Now the controller just needs to call the service's methods: [default_controller.py](https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/student_service/python-flask-server-generated/python-flask-server/swagger_server/controllers/default_controller.py)
 
 
 After you are done commit the code.
@@ -254,9 +254,9 @@ As soon as you have fixed the  issue assigned to you ask for a pull request
 ## Jenkins File 
 
 https://jenkins.io/doc/book/pipeline/jenkinsfile/
-(Jenkinsfile)[https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/CI-CD/python-flask-server-generated/python-flask-server/Jenkinsfile]
+[Jenkinsfile](https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/CI-CD/python-flask-server-generated/python-flask-server/Jenkinsfile)
 
 ## Docker
-(Dockerfile)[https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/CI-CD/python-flask-server-generated/python-flask-server/Dockerfile]
+[Dockerfile](https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/CI-CD/python-flask-server-generated/python-flask-server/Dockerfile)
 
 
