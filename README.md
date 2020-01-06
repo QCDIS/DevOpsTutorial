@@ -41,7 +41,7 @@ Effectively what is said here is that the "#/definitions/Student" is not defined
 You can find more about '$ref' here: https://swagger.io/docs/specification/using-ref/
 
 ### Define Objects
-Scorll down to the bottom of the page and create a new node called 'definitions' and a node 'Student' under that. The code should look like this:
+Scroll down to the bottom of the page and create a new node called 'definitions' and a node 'Student' under that. The code should look like this:
 ```YAML
 definitions:
   Student:
