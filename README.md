@@ -37,7 +37,7 @@ Jump to line 52
 <img src="/images/swagger4.png" alt="swagger"
 	title="swagger" width="550"/>
 
-Efectivly what is said here is that the "#/definitions/Student" is not defined. 
+Effectively what is said here is that the "#/definitions/Student" is not defined. 
 You can find more about '$ref' here: https://swagger.io/docs/specification/using-ref/
 
 ### Define Objects
