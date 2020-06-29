@@ -1,5 +1,5 @@
 # DevOpsTutorial
-Define a simple REST API with OpenAPI and Swagger, write REST API tests using Postman, develop the application logic, dockerize it and finally perform continuous integration (CI) 
+Define a simple REST API with OpenAPI and Swagger, develop the application logic and dockerize it
 
 ## Prerequisites
 * git and Github/Gitlab/Bitbuacket account 
