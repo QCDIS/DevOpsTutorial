@@ -1,5 +1,0 @@
-flask-testing==0.7.1
-coverage==4.5.4
-nose>=1.3.7
-pluggy>=0.13.0
-randomize>=0.14
