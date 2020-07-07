@@ -9,11 +9,9 @@ The European Open Science Cloud (EOSC) brings together multiple service provider
 ### Usage of OpenStack on EOSC
 Open the EOSCs providers  OpenStack dashboard on this URL: https://fedcloud-osservices.egi.cesga.es/project/
 
-
-<img src="https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/master/images/os1.png" alt="os"
-	title="openstack" width="550"/>
-
-You will need to log in with via EGI SSO
-
-<img src="https://raw.githubusercontent.com/skoulouzis/DevOpsTutorial/master/images/os2.png" alt="os"
-	title="openstack" width="550"/>
+1. You will need to log in with via EGI SSO	
+2. On the dashboard go to instances and select "Launch Instance"
+3. Fill in the requiered fialds. Note depanding on the provider there may be small variations. Important! create and save the generated key
+4. Change the permitions to the downloaded key 
+5. ssh into the newly vreated VM 
+6. Try a sudo command e.g. sudo apt update. Notice you do not need a pasword to run commands using sudo 
