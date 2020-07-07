@@ -5,13 +5,13 @@ from swagger_server.models.temperatue import Temperatue  # noqa: E501
 from swagger_server import util
 
 
-def get_temperature():  # noqa: E501
-    """get_temperature
+def get_temperatures():  # noqa: E501
+    """get_temperatures
 
      # noqa: E501
 
 
-    :rtype: Temperatue
+    :rtype: List[Temperatue]
     """
     return 'do some magic!'
 

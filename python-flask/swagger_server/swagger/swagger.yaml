@@ -7,14 +7,17 @@ servers:
 paths:
   /temperature:
     get:
-      operationId: get_temperature
+      operationId: get_temperatures
       responses:
         "200":
           description: ok
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Temperatue'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Temperatue'
+                x-content-type: application/json
       x-openapi-router-controller: swagger_server.controllers.default_controller
     put:
       operationId: set_temperature

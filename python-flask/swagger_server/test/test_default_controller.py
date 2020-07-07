@@ -12,8 +12,8 @@ from swagger_server.test import BaseTestCase
 class TestDefaultController(BaseTestCase):
     """DefaultController integration test stubs"""
 
-    def test_get_temperature(self):
-        """Test case for get_temperature
+    def test_get_temperatures(self):
+        """Test case for get_temperatures
 
         
         """
