@@ -1,0 +1,57 @@
+openapi: 3.0.0
+info:
+  title: example API
+  version: 0.0.1
+servers:
+- url: /my-service/1.0.0
+paths:
+  /temperature:
+    get:
+      operationId: get_temperature
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Temperatue'
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+    put:
+      operationId: set_temperature
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Temperatue'
+      responses:
+        "201":
+          description: created
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+components:
+  schemas:
+    Temperatue:
+      required:
+      - timestamp
+      - value
+      type: object
+      properties:
+        value:
+          type: number
+          description: the temperature
+          format: double
+        units:
+          type: string
+          description: the temperature units
+          default: celsius
+          enum:
+          - celsius
+          - fahrenheit
+        timestamp:
+          type: string
+          description: the timestamp when the temperature was measured
+          format: date-time
+      example:
+        units: celsius
+        value: 0.80082819046101150206595775671303272247314453125
+        timestamp: 2000-01-23T04:56:07.000+00:00
+
