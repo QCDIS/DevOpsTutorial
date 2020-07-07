@@ -7,7 +7,5 @@ The European Open Science Cloud (EOSC) brings together multiple service provider
 
 
 ### Usage of OpenStack on EOSC
-Open the EOSCs providers  OpenStack dashboard on this URL:
-```
-https://fedcloud-osservices.egi.cesga.es/project/
-```
+Open the EOSCs providers  OpenStack dashboard on this URL: https://fedcloud-osservices.egi.cesga.es/project/
+
