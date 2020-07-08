@@ -3,4 +3,5 @@
 # flake8: noqa
 from __future__ import absolute_import
 # import models into model package
-from swagger_server.models.temperatue import Temperatue
+from swagger_server.models.error_message import ErrorMessage
+from swagger_server.models.temperature import Temperature

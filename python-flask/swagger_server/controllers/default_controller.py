@@ -1,31 +1,32 @@
 import connexion
 import six
 
-from swagger_server.models.temperatue import Temperatue  # noqa: E501
+from swagger_server.models.error_message import ErrorMessage  # noqa: E501
+from swagger_server.models.temperature import Temperature  # noqa: E501
 from swagger_server import util
 
 
-def get_temperatures():  # noqa: E501
-    """get_temperatures
+def create_temperature(body=None):  # noqa: E501
+    """create_temperature
 
-     # noqa: E501
+    Creates a new Temperature # noqa: E501
 
+    :param body: The Temperature to create
+    :type body: dict | bytes
 
-    :rtype: List[Temperatue]
+    :rtype: Temperature
     """
+    if connexion.request.is_json:
+        body = Temperature.from_dict(connexion.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
-def set_temperature(body=None):  # noqa: E501
-    """set_temperature
+def get_temperature():  # noqa: E501
+    """get_temperature
 
-     # noqa: E501
+    Gets a Temperature # noqa: E501
 
-    :param body: 
-    :type body: dict | bytes
 
-    :rtype: None
+    :rtype: Temperature
     """
-    if connexion.request.is_json:
-        body = Temperatue.from_dict(connexion.request.get_json())  # noqa: E501
     return 'do some magic!'
