@@ -14,29 +14,24 @@ class Temperature(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, name: str=None, timestamp: datetime=None, value: float=None):  # noqa: E501
+    def __init__(self, _date: date=None, value: float=None):  # noqa: E501
         """Temperature - a model defined in Swagger
 
-        :param name: The name of this Temperature.  # noqa: E501
-        :type name: str
-        :param timestamp: The timestamp of this Temperature.  # noqa: E501
-        :type timestamp: datetime
+        :param _date: The _date of this Temperature.  # noqa: E501
+        :type _date: date
         :param value: The value of this Temperature.  # noqa: E501
         :type value: float
         """
         self.swagger_types = {
-            'name': str,
-            'timestamp': datetime,
+            '_date': date,
             'value': float
         }
 
         self.attribute_map = {
-            'name': 'name',
-            'timestamp': 'timestamp',
+            '_date': 'date',
             'value': 'value'
         }
-        self._name = name
-        self._timestamp = timestamp
+        self.__date = _date
         self._value = value
 
     @classmethod
@@ -51,48 +46,25 @@ class Temperature(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def name(self) -> str:
-        """Gets the name of this Temperature.
+    def _date(self) -> date:
+        """Gets the _date of this Temperature.
 
 
-        :return: The name of this Temperature.
-        :rtype: str
+        :return: The _date of this Temperature.
+        :rtype: date
         """
-        return self._name
+        return self.__date
 
-    @name.setter
-    def name(self, name: str):
-        """Sets the name of this Temperature.
+    @_date.setter
+    def _date(self, _date: date):
+        """Sets the _date of this Temperature.
 
 
-        :param name: The name of this Temperature.
-        :type name: str
+        :param _date: The _date of this Temperature.
+        :type _date: date
         """
 
-        self._name = name
-
-    @property
-    def timestamp(self) -> datetime:
-        """Gets the timestamp of this Temperature.
-
-
-        :return: The timestamp of this Temperature.
-        :rtype: datetime
-        """
-        return self._timestamp
-
-    @timestamp.setter
-    def timestamp(self, timestamp: datetime):
-        """Sets the timestamp of this Temperature.
-
-
-        :param timestamp: The timestamp of this Temperature.
-        :type timestamp: datetime
-        """
-        if timestamp is None:
-            raise ValueError("Invalid value for `timestamp`, must not be `None`")  # noqa: E501
-
-        self._timestamp = timestamp
+        self.__date = _date
 
     @property
     def value(self) -> float:

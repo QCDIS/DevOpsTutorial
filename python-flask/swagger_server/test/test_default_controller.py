@@ -20,7 +20,7 @@ class TestDefaultController(BaseTestCase):
         """
         body = Temperature()
         response = self.client.open(
-            '//Temperatures',
+            '/my-temp-service/0.0.1/Temperatures',
             method='POST',
             data=json.dumps(body),
             content_type='application/json')
@@ -32,9 +32,11 @@ class TestDefaultController(BaseTestCase):
 
         
         """
+        query_string = [('_date', '2013-10-20')]
         response = self.client.open(
-            '//Temperatures',
-            method='GET')
+            '/my-temp-service/0.0.1/Temperatures',
+            method='GET',
+            query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 

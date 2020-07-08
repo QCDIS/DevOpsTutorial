@@ -21,12 +21,15 @@ def create_temperature(body=None):  # noqa: E501
     return 'do some magic!'
 
 
-def get_temperature():  # noqa: E501
+def get_temperature(_date):  # noqa: E501
     """get_temperature
 
     Gets a Temperature # noqa: E501
 
+    :param _date: date of Temperature
+    :type _date: str
 
     :rtype: Temperature
     """
+    _date = util.deserialize_date(_date)
     return 'do some magic!'

@@ -7,13 +7,23 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   version: 0.0.1
 servers:
-- url: http://localhost:8080/
+- url: http://localhost:8080/my-temp-service/0.0.1
   description: Example API Service
 paths:
   /Temperatures:
     get:
       description: Gets a Temperature
       operationId: get_temperature
+      parameters:
+      - name: date
+        in: query
+        description: date of Temperature
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          format: date
       responses:
         "200":
           description: Temperature found
@@ -27,7 +37,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
-      x-openapi-router-controller: swagger_server.controllers.default_controller
+      x-openapi-router-controller: openapi_server.controllers.default_controller
     post:
       description: Creates a new Temperature
       operationId: create_temperature
@@ -50,28 +60,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorMessage'
-      x-openapi-router-controller: swagger_server.controllers.default_controller
+      x-openapi-router-controller: openapi_server.controllers.default_controller
 components:
   schemas:
     Temperature:
       required:
-      - timestamp
       - value
       type: object
       properties:
-        name:
+        date:
           type: string
+          format: date
           readOnly: true
-        timestamp:
-          type: string
-          format: date-time
         value:
           type: number
           format: double
       example:
-        name: name
-        value: 0.80082819046101150206595775671303272247314453125
-        timestamp: 2000-01-23T04:56:07.000+00:00
+        date: 2020-07-08 15:00:44.254187
+        value: 20.7
     ErrorMessage:
       required:
       - error_code
