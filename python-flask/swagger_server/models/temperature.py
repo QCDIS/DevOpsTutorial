@@ -14,30 +14,30 @@ class Temperature(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, name: str=None, display_name: str=None, email: str=None):  # noqa: E501
+    def __init__(self, name: str=None, timestamp: datetime=None, value: float=None):  # noqa: E501
         """Temperature - a model defined in Swagger
 
         :param name: The name of this Temperature.  # noqa: E501
         :type name: str
-        :param display_name: The display_name of this Temperature.  # noqa: E501
-        :type display_name: str
-        :param email: The email of this Temperature.  # noqa: E501
-        :type email: str
+        :param timestamp: The timestamp of this Temperature.  # noqa: E501
+        :type timestamp: datetime
+        :param value: The value of this Temperature.  # noqa: E501
+        :type value: float
         """
         self.swagger_types = {
             'name': str,
-            'display_name': str,
-            'email': str
+            'timestamp': datetime,
+            'value': float
         }
 
         self.attribute_map = {
             'name': 'name',
-            'display_name': 'display_name',
-            'email': 'email'
+            'timestamp': 'timestamp',
+            'value': 'value'
         }
         self._name = name
-        self._display_name = display_name
-        self._email = email
+        self._timestamp = timestamp
+        self._value = value
 
     @classmethod
     def from_dict(cls, dikt) -> 'Temperature':
@@ -72,47 +72,47 @@ class Temperature(Model):
         self._name = name
 
     @property
-    def display_name(self) -> str:
-        """Gets the display_name of this Temperature.
+    def timestamp(self) -> datetime:
+        """Gets the timestamp of this Temperature.
 
 
-        :return: The display_name of this Temperature.
-        :rtype: str
+        :return: The timestamp of this Temperature.
+        :rtype: datetime
         """
-        return self._display_name
+        return self._timestamp
 
-    @display_name.setter
-    def display_name(self, display_name: str):
-        """Sets the display_name of this Temperature.
+    @timestamp.setter
+    def timestamp(self, timestamp: datetime):
+        """Sets the timestamp of this Temperature.
 
 
-        :param display_name: The display_name of this Temperature.
-        :type display_name: str
+        :param timestamp: The timestamp of this Temperature.
+        :type timestamp: datetime
         """
-        if display_name is None:
-            raise ValueError("Invalid value for `display_name`, must not be `None`")  # noqa: E501
+        if timestamp is None:
+            raise ValueError("Invalid value for `timestamp`, must not be `None`")  # noqa: E501
 
-        self._display_name = display_name
+        self._timestamp = timestamp
 
     @property
-    def email(self) -> str:
-        """Gets the email of this Temperature.
+    def value(self) -> float:
+        """Gets the value of this Temperature.
 
 
-        :return: The email of this Temperature.
-        :rtype: str
+        :return: The value of this Temperature.
+        :rtype: float
         """
-        return self._email
+        return self._value
 
-    @email.setter
-    def email(self, email: str):
-        """Sets the email of this Temperature.
+    @value.setter
+    def value(self, value: float):
+        """Sets the value of this Temperature.
 
 
-        :param email: The email of this Temperature.
-        :type email: str
+        :param value: The value of this Temperature.
+        :type value: float
         """
-        if email is None:
-            raise ValueError("Invalid value for `email`, must not be `None`")  # noqa: E501
+        if value is None:
+            raise ValueError("Invalid value for `value`, must not be `None`")  # noqa: E501
 
-        self._email = email
+        self._value = value

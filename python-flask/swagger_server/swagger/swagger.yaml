@@ -55,24 +55,23 @@ components:
   schemas:
     Temperature:
       required:
-      - display_name
-      - email
+      - timestamp
+      - value
       type: object
       properties:
         name:
           type: string
           readOnly: true
-        display_name:
-          maxLength: 20
-          minLength: 1
+        timestamp:
           type: string
-        email:
-          type: string
-          format: email
+          format: date-time
+        value:
+          type: number
+          format: double
       example:
         name: name
-        display_name: display_name
-        email: ""
+        value: 0.80082819046101150206595775671303272247314453125
+        timestamp: 2000-01-23T04:56:07.000+00:00
     ErrorMessage:
       required:
       - error_code
@@ -82,35 +81,5 @@ components:
         error_code:
           type: string
         error_message:
-          type: string
-  parameters:
-    Temperature_id:
-      name: Temperature_id
-      in: path
-      description: ID of Temperature
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    photo_id:
-      name: photo_id
-      in: path
-      description: ID of photo
-      required: true
-      style: simple
-      explode: false
-      schema:
-        type: string
-    photo_ids:
-      name: photo_ids
-      in: query
-      description: a collection of photo IDs
-      required: true
-      style: form
-      explode: true
-      schema:
-        type: array
-        items:
           type: string
 
