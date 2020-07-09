@@ -34,7 +34,7 @@ To run the server on a Docker container, please execute the following from the r
 docker build -t my-temp-service .
 
 # starting up a MongoDB container
-docker run -it -p 27017:27017 mongo
+docker run -it -p 27017:27017 mongo:4
 
 
 # starting up a container
