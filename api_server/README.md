@@ -11,7 +11,7 @@ Python 3.7+
 MongoDB 4+
 
 ## Usage
-To run the server, please execute the following from the root directory:
+To run the server, please execute the following from the api_server directory:
 
 ```
 pip3 install -r requirements.txt
@@ -19,12 +19,6 @@ python3 -m openapi_server
 ```
 
 and open your browser to here:
-
-```
-http://localhost:8080/ui/
-```
-
-Your OpenAPI definition lives here:
 
 ```
 http://localhost:8080/my-temp-service/0.0.1/ui/
