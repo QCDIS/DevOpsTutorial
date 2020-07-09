@@ -21,7 +21,7 @@ python3 -m openapi_server
 and open your browser to here:
 
 ```
-http://localhost:8080/my-temp-service/0.0.1/ui/
+http://localhost:8082/my-temp-service/0.0.1/ui/
 ```
 
 
