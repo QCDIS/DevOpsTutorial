@@ -1,16 +1,25 @@
 import configparser
 import datetime
 import json
+import os
 from copy import copy
+from pathlib import Path
 
 import connexion
 import pymongo
 
+
 from openapi_server import util
 from openapi_server.models.temperature import Temperature
 
+properties_path = 'properties.ini'
+if not os.path.isfile(properties_path):
+    current_path = Path(os.path.dirname(os.path.realpath(__file__)))
+    properties_path = os.path.join(current_path.parent, 'properties.ini')
+
+
 config = configparser.ConfigParser()
-config.read('properties.ini')
+config.read(properties_path)
 
 mongo_client = pymongo.MongoClient(config['mongo']['endpotin'])
 db = mongo_client["tmp_service_database"]
