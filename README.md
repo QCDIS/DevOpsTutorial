@@ -24,12 +24,18 @@ Docker performs operating-system-level virtualization, also known as
 "containerization". Docker uses the resource isolation features of the Linux 
 kernel to allow independent "containers" to run within a Linux instance.
 
+### kubernetes
+Kubernetes is an open-source container-orchestration system for 
+automating computer application deployment, scaling, and management. 
+
 
 ### Python Virtualenv
 Virtualenv is a tool to create isolated Python environments. The basic problem 
 being addressed is one of dependencies and versions. Virtualenv creates an 
 environment that has its own installation directories, that doesn't share 
 libraries with other virtualenv environments.
+
+
 
 
 ## Preparation
@@ -148,7 +154,68 @@ ansible-playbook -i inventory_my-temp-service.yaml --key-file PATH_TO_VM_PRIVATE
 * Got to http://<VM_PUBLIC_IP>:8082/my-temp-service/0.0.1/ui/ and test your service 
 * Terminate the VM
 
+### Kubernetes 
+* Start 2 VMs with Ubuntu 18.04, 1 VCPUS 2 GB RAM and 20 GB disk
+* On both VMs install Docker using these instructions: 
+https://linoxide.com/containers/install-docker-ubuntu-20-04/
+* On both VMs install Kubernetes (K8s). Download and add the key for K8s: 
+```Bash
+sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add 
+```
+* Install Kubernetes:
+```Bash
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl kubernetes-cni
+```
+* Choose on VM to be the master node. On the master node initialize K8s:
+ ```Bash
+sudo kubeadm init --ignore-preflight-errors=NumCPU
+```
 
+* Create the configuration folder 
+ ```Bash
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
 
+* Enable the bridge-nf-call tables
+ ```Bash
+sudo sysctl net.bridge.bridge-nf-call-iptables=1
+```
 
+* Create the Weave Net addon: Weave Net creates a virtual network that 
+connects Docker containers across multiple hosts and enables their 
+automatic discovery. 
+```Bash
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+```     
 
+* Since we have a small cluster (2 VMs) we want the muster to also tun 
+containers. To do that type:
+```Bash
+kubectl taint nodes --all node-role.kubernetes.io/master-  
+```    
+
+* To be able to add workers to the cluster we need to get some keys. To
+do that type:
+```Bash
+sudo kubeadm token create --print-join-command
+```   
+* Join the worker VM on the K8s cluster. On the VM chosen as worker type:
+```Bash
+sudo swapoff -a
+```   
+* Copy the output of 'sudo kubeadm token create --print-join-command' from the master to 
+the worker. It should look like this: 'sudo kubeadm join 212.189.145.45:6443 --token ijg5iy.kso5ifgarxge9884     --discovery-token-ca-cert-hash sha256:081c4d0c2c56d19672ebb527e70fe58d3e2914108e907b226383649d183a155'
+
+* Check your cluster. On the master node type:
+```Bash
+kubectl get nodes
+```
+You should see something like this:
+```Bash
+NAME   STATUS   ROLES    AGE     VERSION
+vm1    Ready    master   32m     v1.18.5
+vm2    Ready    <none>   2m23s   v1.18.5
+```
