@@ -56,11 +56,7 @@
         requirements: /DevOpsTutorial/api_server/requirements.txt
         executable: pip3
 
-    - name: start flask
-      shell: "flask run"
-        environment:
-          FLASK_APP: DevOpsTutorial/api_server/openapi_server/__main__.py
-
-
-#    - name: Start service
-#      shell: "cd /DevOpsTutorial/api_server/ && nohup python3 openapi_server/__main__.py &"
+    - name: Create Service File
+      file:
+        path: /lib/systemd/system/my-temp.service
+        state: touch
