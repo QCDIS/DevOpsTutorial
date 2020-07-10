@@ -1,4 +1,4 @@
 #!/bin/bash
 
 
-python3 -m openapi_server
+screen -d python3 -m openapi_server
