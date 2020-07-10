@@ -384,9 +384,13 @@ kubectl delete -f ./K8s
 
 
 ### Questions 
-* How dose the RESTful Web Service communicate with the MongoDB if that  MongoDB is not 
-acceptable externally 
-* How do decide on which individual machine your service and DB will run ?
+* How dose the RESTful Web Service communicate with the MongoDB if that MongoDB 
+is not acceptable externally 
+* Currently the RESTful Web Service runs over plain http meaning that the communication
+between any client and the RESTful Web Service are unsecured. How would you enable
+ssl encryption, meaning that the RESTful Web Service will run from https without 
+modifying the service's source code ? 
+ 
 
 
 # Appendix 
