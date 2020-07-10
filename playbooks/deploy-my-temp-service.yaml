@@ -59,6 +59,18 @@
 
     - name: Make start exec
       file: dest=/DevOpsTutorial/api_server/start.sh mode=+x
-    -
+
+    - name: Wait for port MongoDB
+      wait_for:
+        port: 27017
+        delay: 3
+
+
     - name: Start
       shell: cd /DevOpsTutorial/api_server && ./start.sh
+
+
+    - name: Wait for port service
+      wait_for:
+        port: 8082
+        delay: 3
