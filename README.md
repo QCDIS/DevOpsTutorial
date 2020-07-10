@@ -64,17 +64,15 @@ pip3 install virtualenv
 You may follow these instructions depending your OS: 
 https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
 
-
+<!--
 ## Usage of OpenStack on EOSC
 Open the EOSCs providers OpenStack dashboard on this URL: https://stack-server.ct.infn.it/dashboard/project/. 
 You will need to log in with via EGI SSO. 
-
+-->
 On the dashboard go to instances and select "Launch Instance" and fill in the required fields. 
-
+<!--
 Note depending on the provider there may be small variations. 
-
 Important! create and save the generated key
-
 Change the permissions to the downloaded key: 
 ```Bash
 chmod 400 demo.pem
@@ -83,12 +81,12 @@ ssh into the newly created VM:
 ```Bash
 ssh ubuntu@<IP> -i demo.pem
 ``` 
-
 Try a sudo command: 
 ```Bash
 sudo apt update
 ```
 Notice you do not need a password to run commands using sudo
+-->
 
 ## Develop RESTful Web Service
 To get an understanding of Swagger and OpenAPI, you may follow this tutorial up 
