@@ -136,7 +136,19 @@ repository is public.
 ## Deploy RESTful Web Service on a VM
 ### Ansible 
 * Start 1 VM with Ubuntu 18.04, 1 VCPUS 2 GB RAM and 20 GB disk
-* Make sure that the VM has port 8082 open in the appropriate security group 
+* Make sure that the VM has port 8082 open in the appropriate security 
+group 
 * Got to DevOpsTutorial/playbooks folder 
-* 
+* Edit the inventory_my-temp-service.yaml file and replace the line 
+'VM_IP' with the actual public IP of your newly created VM  
+* Run the deploy-my-temp-service.yaml playbook by typing: 
+```Bash
+ansible-playbook -i inventory_my-temp-service.yaml --key-file PATH_TO_VM_PRIVATE_KEY deploy-my-temp-service.yaml
+```
+* Got to http://<VM_PUBLIC_IP>:8082/my-temp-service/0.0.1/ui/ and test your service 
+* Terminate the VM
+
+
+
+
 
