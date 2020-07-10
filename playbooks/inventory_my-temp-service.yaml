@@ -1,0 +1,7 @@
+all:
+  children:
+    master:
+      hosts:
+        78.128.251.206:
+          ansible_ssh_common_args: -o StrictHostKeyChecking=no
+          ansible_ssh_user: ubuntu
