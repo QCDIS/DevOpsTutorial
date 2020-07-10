@@ -6,13 +6,14 @@ Applications implemented based on OpenAPI interface files can automatically
 generate documentation of methods, parameters and models. This helps keep the 
 documentation, client libraries, and source code in sync.
 
+<!--
 ### European Open Science Cloud (EOSC)
 The European Open Science Cloud (EOSC) brings together multiple service 
 providers to create a single contact point for researchers and innovators to 
 discover, access, and use Cloud resources. EOSC providers use OpenStack which 
 is an open standard cloud computing platform, mostly deployed as 
 infrastructure-as-a-service (IaaS) in both public and private clouds.
-
+-->
 
 ### GitHub
 GitHub is a web-based hosting service for version control using Git. Version 
