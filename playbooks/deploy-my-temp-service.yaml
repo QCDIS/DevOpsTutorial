@@ -57,7 +57,8 @@
         requirements: /DevOpsTutorial/api_server/requirements.txt
         executable: pip3
 
-    - name: Create Service File
-      file:
-        path: /lib/systemd/system/my-temp.service
-        state: touch
+    - name: Make start exec
+      file: dest=/DevOpsTutorial/api_server/start.sh mode=+x
+    -
+    - name: Start
+      shell: cd /DevOpsTutorial/api_server && ./start.sh
