@@ -63,21 +63,27 @@ pip3 install virtualenv
 You may follow these instructions depending your OS: 
 https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
 
+
 ## Usage of OpenStack on EOSC
-* Open the EOSCs providers OpenStack dashboard on this URL: https://stack-server.ct.infn.it/dashboard/project/
-* You will need to log in with via EGI SSO
-* On the dashboard go to instances and select "Launch Instance"
-* Fill in the required fields. Note depending on the provider there may be small variations. Important! create and save the generated key
-*  Change the permissions to the downloaded key: 
+Open the EOSCs providers OpenStack dashboard on this URL: https://stack-server.ct.infn.it/dashboard/project/. 
+You will need to log in with via EGI SSO. 
+
+On the dashboard go to instances and select "Launch Instance" and fill in the required fields. 
+
+Note depending on the provider there may be small variations. 
+
+Important! create and save the generated key
+
+Change the permissions to the downloaded key: 
 ```Bash
 chmod 400 demo.pem
 ```
-* ssh into the newly created VM:
+ssh into the newly created VM:
 ```Bash
 ssh ubuntu@<IP> -i demo.pem
 ``` 
 
-* Try a sudo command: 
+Try a sudo command: 
 ```Bash
 sudo apt update
 ```
@@ -128,88 +134,100 @@ do this follow these infatuations: https://docs.docker.com/docker-hub/builds/lin
 
 
 To publish your RESTful Web Service on Dockerhub: 
-* Got to your own Dockerhub at https://hub.docker.com/
-* Create a new repository and name it 'my-temp-service'. Make sure your 
+Got to your own Dockerhub at https://hub.docker.com/
+1. Create a new repository and name it 'my-temp-service'. Make sure your 
 repository is public.
-* On the section 'Build Settings (optional)' select the Github icon
-* On 'Select Organization' add your connected github account name
-* Select the 'DevOpsTutorial' repository
-* Select 'BUILD RULES' on the 'Source' replace 'master' with 'summer_school'
-* In 'Build Context' add '/api_server'
-* Finally select 'Create and Build'
+2. On the section 'Build Settings (optional)' select the Github icon
+3. On 'Select Organization' add your connected github account name
+4. Select the 'DevOpsTutorial' repository
+5. Select 'BUILD RULES' on the 'Source' replace 'master' with 'summer_school'
+6. In 'Build Context' add '/api_server'
+7. Finally select 'Create and Build'
 
   
 ## Deploy RESTful Web Service on a VM
 ### Ansible 
-* Start 1 VM with Ubuntu 18.04, 1 VCPUS 2 GB RAM and 20 GB disk
-* Make sure that the VM has port 8082 open in the appropriate security 
+Start 1 VM with Ubuntu 18.04, 1 VCPUS 2 GB RAM and 20 GB disk
+. Make sure that the VM has port 8082 open in the appropriate security 
 group 
-* Got to DevOpsTutorial/playbooks folder 
-* Edit the inventory_my-temp-service.yaml file and replace the line 
+
+Got to DevOpsTutorial/playbooks folder 
+
+Edit the inventory_my-temp-service.yaml file and replace the line 
 'VM_IP' with the actual public IP of your newly created VM  
-* Run the deploy-my-temp-service.yaml playbook by typing: 
+
+Run the deploy-my-temp-service.yaml playbook by typing: 
 ```Bash
 ansible-playbook -i inventory_my-temp-service.yaml --key-file PATH_TO_VM_PRIVATE_KEY deploy-my-temp-service.yaml
 ```
-* Got to http://<VM_PUBLIC_IP>:8082/my-temp-service/0.0.1/ui/ and test your service 
-* Terminate the VM
 
-### Kubernetes 
-* Start 2 VMs with Ubuntu 18.04, 1 VCPUS 2 GB RAM and 20 GB disk
-* On both VMs install Docker using these instructions: 
+Got to http://<VM_PUBLIC_IP>:8082/my-temp-service/0.0.1/ui/ and test your service. 
+If everthing is working properly you may terminate the VM
+
+### Install Kubernetes 
+
+Start 2 VMs with Ubuntu 18.04, 1 VCPUS 2 GB RAM and 20 GB disk
+
+On both VMs install Docker using these instructions: 
 https://linoxide.com/containers/install-docker-ubuntu-20-04/
-* On both VMs install Kubernetes (K8s). Download and add the key for K8s: 
+
+On both VMs install Kubernetes (K8s). Download and add the key for K8s: 
 ```Bash
 sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add 
 ```
-* Install Kubernetes:
+Install Kubernetes:
 ```Bash
 sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl kubernetes-cni
 ```
-* Choose on VM to be the master node. On the master node initialize K8s:
+
+Choose on VM to be the master node. On the master node initialize K8s:
  ```Bash
 sudo kubeadm init --ignore-preflight-errors=NumCPU
 ```
 
-* Create the configuration folder 
+Create the configuration folder 
  ```Bash
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-* Enable the bridge-nf-call tables
+Enable the bridge-nf-call tables
  ```Bash
 sudo sysctl net.bridge.bridge-nf-call-iptables=1
 ```
 
-* Create the Weave Net addon: Weave Net creates a virtual network that 
+Create the Weave Net addon: Weave Net creates a virtual network that 
 connects Docker containers across multiple hosts and enables their 
 automatic discovery. 
 ```Bash
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 ```     
 
-* Since we have a small cluster (2 VMs) we want the muster to also tun 
+Since we have a small cluster (2 VMs) we want the master to also tun 
 containers. To do that type:
 ```Bash
 kubectl taint nodes --all node-role.kubernetes.io/master-  
 ```    
 
-* To be able to add workers to the cluster we need to get some keys. To
+To be able to add workers to the cluster we need to get some keys. To
 do that type:
 ```Bash
 sudo kubeadm token create --print-join-command
 ```   
-* Join the worker VM on the K8s cluster. On the VM chosen as worker type:
+Join the worker VM on the K8s cluster. On the VM chosen as worker type:
 ```Bash
 sudo swapoff -a
 ```   
-* Copy the output of 'sudo kubeadm token create --print-join-command' from the master to 
-the worker. It should look like this: 'sudo kubeadm join 212.189.145.45:6443 --token ijg5iy.kso5ifgarxge9884     --discovery-token-ca-cert-hash sha256:081c4d0c2c56d19672ebb527e70fe58d3e2914108e907b226383649d183a155'
+Copy the output of 'sudo kubeadm token create --print-join-command' from the master to 
+the worker. It should look like this:
 
-* Check your cluster. On the master node type:
+```Bash
+sudo kubeadm join 212.189.145.45:6443 --token ijg5iy.kso5ifgarxge9884     --discovery-token-ca-cert-hash sha256:081c4d0c2c56d19672ebb527e70fe58d3e2914108e907b226383649d183a155'
+```  
+
+Check your cluster. On the master node type:
 ```Bash
 kubectl get nodes
 ```
@@ -219,3 +237,47 @@ NAME   STATUS   ROLES    AGE     VERSION
 vm1    Ready    master   32m     v1.18.5
 vm2    Ready    <none>   2m23s   v1.18.5
 ```
+
+
+### Test K8s Cluster 
+This is a basic Kubernetes deployment of Nginx. On the master node create an Nginx 
+deployment:
+```Bash
+kubectl create deployment nginx --image=nginx
+```
+You may check your Nginx deployment by typing:
+ ```Bash
+kubectl get all
+```
+
+The output should look like this:
+ ```Bash
+NAME                        READY   STATUS    RESTARTS   AGE
+pod/nginx-f89759699-blzk7   1/1     Running   0          50s
+
+NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   146m
+
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/nginx   1/1     1            1           50s
+
+NAME                              DESIRED   CURRENT   READY   AGE
+replicaset.apps/nginx-f89759699   1         1         1       50s
+```
+
+
+At this point Nginx is running on the K8s cluster, however it is only accessible from
+within the cluster. To expose Nginx to the outside world we should type:
+ ```Bash
+kubectl create service nodeport nginx --tcp=443:443
+```
+To check your Nginx deployment type:
+ ```Bash
+kubectl get all
+```
+You should see the among others the line: 
+ ```Bash
+service/nginx        NodePort    10.104.65.224   <none>        443:30115/TCP   5m48s
+```
+This means that port 443 is mapped on port 30115 of each node in the K8s cluster. 
+Now we can access Nginx from  https://<VM_PUBLIC_IP>
