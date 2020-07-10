@@ -336,9 +336,8 @@ In that folder there should be four files:
 0 directories, 4 files
 ``` 
 mongo-deployment.yaml and mongo-service.yaml are used for deploying the MongoDB on the K8s cluster.
-my-temp-deployment.yaml and my-temp-service.yaml are used for deploying the  RESTful Web Service 
-developed on the previous step. 
-
+my-temp-deployment.yaml and my-temp-service.yaml are used for deploying the RESTful Web
+ Service developed on the previous step. 
 
 To create all the deployments and services type in the K8s folder:
 ```Bash
@@ -353,24 +352,28 @@ kubectl get all
 
 You should see something like this:
 ```Bash
-NAME                                   READY   STATUS    RESTARTS   AGE
-pod/mongo-6d76c566f7-8b9fz             1/1     Running   0          7m54s
-pod/my-temp-service-68dccc74f8-g5l8p   1/1     Running   0          7m54s
+NAME                                   READY   STATUS              RESTARTS   AGE
+pod/mongo-6d76c566f7-kcjg2             0/1     ContainerCreating   0          7s
+pod/my-temp-service-68dccc74f8-7pm8n   0/1     ContainerCreating   0          7s
+pod/nginx-f89759699-5cqgg              1/1     Running             0          7m28s
 
-NAME                      TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
-service/kubernetes        ClusterIP   10.96.0.1      <none>        443/TCP          60d
-service/mongo             ClusterIP   10.101.84.65   <none>        27017/TCP        7m54s
-service/my-temp-service   NodePort    10.106.16.97   <none>        8082:31973/TCP   7m54s
+NAME                      TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+service/kubernetes        ClusterIP   10.96.0.1        <none>        443/TCP          11m
+service/mongo             ClusterIP   10.106.24.187    <none>        27017/TCP        7s
+service/my-temp-service   NodePort    10.103.250.155   <none>        8082:31400/TCP   6s
+service/nginx             NodePort    10.106.12.71     <none>        80:31122/TCP     5m1s
 
 NAME                              READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/mongo             1/1     1            1           7m54s
-deployment.apps/my-temp-service   1/1     1            1           7m54s
+deployment.apps/mongo             0/1     1            0           8s
+deployment.apps/my-temp-service   0/1     1            0           7s
+deployment.apps/nginx             1/1     1            1           7m28s
 
 NAME                                         DESIRED   CURRENT   READY   AGE
-replicaset.apps/mongo-6d76c566f7             1         1         1       7m54s
-replicaset.apps/my-temp-service-68dccc74f8   1         1         1       7m54s
+replicaset.apps/mongo-6d76c566f7             1         1         0       8s
+replicaset.apps/my-temp-service-68dccc74f8   1         1         0       7s
+replicaset.apps/nginx-f89759699              1         1         1       7m28s
 ```
-Note that in this output 'service/my-temp-service' is mapped to 31973 node port. In 
+Note that in this output 'service/my-temp-service' is mapped to 31400 node port. In 
 your case it may be a different number. Now your service should be aveline on 
 http://<VM_PUBLIC_IP>:<NODE_PORT>/my-temp-service/0.0.1/ui/
 

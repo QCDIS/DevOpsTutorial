@@ -27,7 +27,10 @@ spec:
         io.kompose.service:  my-temp-service
     spec:
       containers:
-      - image: qcdis/my-temp-service
+      - env:
+        - name: MONGO_HOST
+          value: mongo  
+        image: qcdis/my-temp-service
         name:  my-temp-service
         imagePullPolicy: Always
         ports:

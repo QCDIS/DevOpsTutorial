@@ -9,7 +9,10 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY . /usr/src/app
 
-EXPOSE 8080
+RUN echo "[mongo]" > /usr/src/app/openapi_server/properties.ini
+RUN echo "endpotin = mongodb://$MONGO_HOST:27017/" >> /usr/src/app/openapi_server/properties.ini
+
+EXPOSE 8082
 
 ENTRYPOINT ["python3"]
 
