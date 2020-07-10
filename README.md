@@ -390,6 +390,8 @@ is not acceptable externally
 between any client and the RESTful Web Service are unsecured. How would you enable
 ssl encryption, meaning that the RESTful Web Service will run from https without 
 modifying the service's source code ? 
+* If the VMs running the K8s cluster fails, how would you make sure all the data 
+saved in the DB are saved ? 
  
 
 
