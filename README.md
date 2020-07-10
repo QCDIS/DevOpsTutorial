@@ -53,6 +53,10 @@ To install virtualenv you can type :
 pip3 install virtualenv
 ```
 
+### Install Ansible 
+You may follow these instructions depending your OS: 
+https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
+
 ## Usage of OpenStack on EOSC
 * Open the EOSCs providers OpenStack dashboard on this URL: https://stack-server.ct.infn.it/dashboard/project/
 * You will need to log in with via EGI SSO
@@ -129,4 +133,10 @@ repository is public.
 * Finally select 'Create and Build'
 
   
+## Deploy RESTful Web Service on a VM
+### Ansible 
+* Start 1 VM with Ubuntu 18.04, 1 VCPUS 2 GB RAM and 20 GB disk
+* Make sure that the VM has port 8082 open in the appropriate security group 
+* Got to DevOpsTutorial/playbooks folder 
+* 
 
