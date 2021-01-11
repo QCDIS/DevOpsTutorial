@@ -1,7 +1,0 @@
-all:
-  children:
-    master:
-      hosts:
-        VM_IP:
-          ansible_ssh_common_args: -o StrictHostKeyChecking=no
-          ansible_ssh_user: ubuntu
