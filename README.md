@@ -241,10 +241,11 @@ different on your deployment. Now we can access Nginx from http://&lt;VM_PUBLIC_
 
 ## Deploy RESTful Web Service on K8s Cluster
 
-To deploy a RESTful Web Service on the K8s Cluster check out the git repository at 
-
-go to your VM in the K8s folder. In that folder there should be 
-four files:
+To deploy a RESTful Web Service on the K8s Cluster clone the git repository:
+```bash
+git clone -b  winter-school-21 https://github.com/QCDIS/DevOpsTutorial.git
+```
+Go in to the K8s folder. In that folder there should be the following files:
 
 ```
 .
@@ -253,8 +254,55 @@ four files:
 0 directories, 4 files
 ```
 
+my-temp-deployment.yaml and my-temp-service.yaml are used for deploying the RESTful Web Service created previously.
 
-my-temp-deployment.yaml and my-temp-service.yaml are used for deploying the RESTful Web Service developed on the previous step.
+Open the 'my-temp-deployment.yaml' file and edit the following line:
+
+```YAML
+  image: REPOSITORY/DOCKER
+```
+Replace 'REPO' with your docker hub username and in the 'NAME' put the name of your FAIR-Cells service.
+If for example your Docker username is 'cloudcells' and the service name is 'classifiers' the  'my-temp-deployment.yaml' 
+should look like this:
+```YAML
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service:  fair-cell-service
+  name:  fair-cell-service
+spec:
+  selector:
+    matchLabels:
+      io.kompose.service:  fair-cell-service
+  replicas: 1
+  strategy:
+        type: RollingUpdate
+        rollingUpdate:
+            maxSurge: 50%
+            maxUnavailable: 50%
+  minReadySeconds: 10
+  revisionHistoryLimit: 3
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service:  fair-cell-service
+    spec:
+      containers:
+        image: cloudcells/classifiers
+        name:  fair-cell-service
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8082
+        resources: {}
+      restartPolicy: Always
+status: {}
+```
 
 To create all the deployments and services type in the K8s folder:
 
@@ -264,8 +312,8 @@ kubectl create -f .
 ```
 
 
-This should create the MongoDB and my-temp-service deployments and services. To see what is running on the cluster type:
-
+This should create the MongoDB and my-temp-service deployments and services. To see what is running on the cluster 
+type:
 
 ```
 kubectl get all
@@ -276,27 +324,34 @@ You should see something like this:
 
 
 ```
-NAME                                   READY   STATUS              RESTARTS   AGE
-pod/mongo-6d76c566f7-kcjg2             0/1     ContainerCreating   0          7s
-pod/my-temp-service-68dccc74f8-7pm8n   0/1     ContainerCreating   0          7s
-pod/nginx-f89759699-5cqgg              1/1     Running             0          7m28s
-NAME                      TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
-service/kubernetes        ClusterIP   10.96.0.1        <none>        443/TCP          11m
-service/mongo             ClusterIP   10.106.24.187    <none>        27017/TCP        7s
-service/my-temp-service   NodePort    10.103.250.155   <none>        8082:31400/TCP   6s
-service/nginx             NodePort    10.106.12.71     <none>        80:31122/TCP     5m1s
-NAME                              READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/mongo             0/1     1            0           8s
-deployment.apps/my-temp-service   0/1     1            0           7s
-deployment.apps/nginx             1/1     1            1           7m28s
-NAME                                         DESIRED   CURRENT   READY   AGE
-replicaset.apps/mongo-6d76c566f7             1         1         0       8s
-replicaset.apps/my-temp-service-68dccc74f8   1         1         0       7s
-replicaset.apps/nginx-f89759699              1         1         1       7m28s
+NAME                        TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+service/fair-cell-service   NodePort    10.102.118.62   <none>        8888:31783/TCP   78s
+service/kubernetes          ClusterIP   10.96.0.1       <none>        443/TCP          133d
+
+NAME                                READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/fair-cell-service   0/1     1            0           11s
+
+NAME                                           DESIRED   CURRENT   READY   AGE
+replicaset.apps/fair-cell-service-7f5bbfb44d   1         1         0       11s
+alogo@kif:~/workspace/DevOpsTutorial/K8s$ kubectl get all
+NAME                                     READY   STATUS              RESTARTS   AGE
+pod/fair-cell-service-7f5bbfb44d-rhlcm   0/1     ContainerCreating   0          33s
+
+NAME                        TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+service/fair-cell-service   NodePort    10.102.118.62   <none>        8888:31783/TCP   101s
+service/kubernetes          ClusterIP   10.96.0.1       <none>        443/TCP          133d
+
+NAME                                READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/fair-cell-service   0/1     1            0           34s
+
+NAME                                           DESIRED   CURRENT   READY   AGE
+replicaset.apps/fair-cell-service-7f5bbfb44d   1         1         0       34s
+
 ```
 
 
-Note that in this output 'service/my-temp-service' is mapped to 31400 node port. In your case it may be a different number. Now your service should be aveline on http://&lt;VM_PUBLIC_IP>:&lt;NODE_PORT>/my-temp-service/0.0.1/ui/
+Note that in this output 'service/my-temp-service' is mapped to 31783 node port. In your case it may be a different 
+number. Now your service should be aveline on http://&lt;VM_PUBLIC_IP>:&lt;NODE_PORT>/
 
 To delete all deployed resources simply type on the master K8s node:
 
@@ -305,22 +360,126 @@ To delete all deployed resources simply type on the master K8s node:
 kubectl delete -f ./K8s
 ```
 
+Now we can benchmark the service. To do that, install apache2-utils:
+```bash
+sudo apt-get install apache2-utils
+```
+More infomration about the tool can be found here: https://www.tutorialspoint.com/apache_bench/index.htm 
+
+
+Run the benchmark:
+```
+ab -n 5 -r -c 5 -g out.data -s 1000 http://&lt;VM_PUBLIC_IP>:NODE_PORT
+```
+The output will look like this:
+```
+Document Path:          /
+Document Length:        0 bytes
+
+Concurrency Level:      5
+Time taken for tests:   347.545 seconds
+Complete requests:      5
+Failed requests:        0
+Total transferred:      905 bytes
+HTML transferred:       0 bytes
+Requests per second:    0.01 [#/sec] (mean)
+Time per request:       347545.008 [ms] (mean)
+Time per request:       69509.002 [ms] (mean, across all concurrent requests)
+Transfer rate:          0.00 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        3    3   0.1      3       3
+Processing: 57942 204803 114178.1 242193  347542
+Waiting:    57942 204802 114178.0 242192  347542
+Total:      57945 204806 114178.1 242196  347545
+
+Percentage of the requests served within a certain time (ms)
+  50%  207447
+  66%  276945
+  75%  276945
+  80%  347545
+  90%  347545
+  95%  347545
+  98%  347545
+  99%  347545
+ 100%  347545 (longest request)
+
+```
+
+## Enable Service Autoscaling
+
+To be able to set the minimum and maximum utilization levels (for CPU, mem. etc.) that will trigger autoscaling you'll 
+need to install the Kubernetes Metrics Server. To install go to folder 'metrics_server' and deploy the Metrics Server:
+
+```bash
+kubectl apply -f .
+```
+
+When the Metrics Server is installed on the master, test if metrics are gathered by typing:
+```bash
+kubectl top nodes
+```
+and
+```bash
+kubectl -n kube-system top pods
+```
+If you don't get any results you may wait for several minutes for the server to deploy.
+
+
+Enable autoscaling with 30 % cpu utilization and max 10 pods:
+```bash
+kubectl autoscale deployment.apps/fair-cell-service --cpu-percent=10 --min=1 --max=10
+```
+Check that the horizontal pod autoscaler (hpa) is running:
+```bash
+kubectl describe hpa fair-cell-service
+````
+
+You should see something like this:
+```bash
+Name:                                                  fair-cell-service
+Namespace:                                             default
+Labels:                                                <none>
+Annotations:                                           <none>
+CreationTimestamp:                                     Mon, 11 Jan 2021 17:08:07 +0100
+Reference:                                             Deployment/fair-cell-service
+Metrics:                                               ( current / target )
+  resource cpu on pods  (as a percentage of request):  <unknown> / 70%
+Min replicas:                                          1
+Max replicas:                                          5
+Deployment pods:                                       0 current / 0 desired
+Events:                                                <none>
+```
+
+More details about limits and requests can be found here: 
+https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
+
+
+Now the service should automatically scale (i.e. create more pods) as the cpu load increases. To be able to see the pods
+increase open a new terminal and type:
+```bash
+watch kubectl get all
+```
+
+On a separate shell re-run the benchmark:
+```bash
+ab -n 5 -r -c 5 -g out.data -s 1000 http://&lt;VM_PUBLIC_IP>:NODE_PORT
+```
+
+
 
 
 ### Questions
+*   How much time did it take for the second benchmark ?  
+*   If we set the '--cpu-percent' to 50 % what will be the impact on the number of pods, and the total execution time 
+    of the benchmark and why?
+*   Currently, the RESTful Web Service runs over plain http meaning that the communication between any client and 
+    the RESTful Web Service is unsecured. How would you enable SSL encryption, meaning that the RESTful Web Service 
+    will run from https without modifying the service's source code?
 
 
-
-*   How does the RESTful Web Service communicate with the MongoDB if that MongoDB is not accessible externally
-*   Currently, the RESTful Web Service runs over plain http meaning that the communication between any client and the RESTful Web Service is unsecured. How would you enable SSL encryption, meaning that the RESTful Web Service will run from https without modifying the service's source code?
-*   If the VMs running the K8s cluster fails, how would you make sure all the data saved in the DB are saved?
-4. Appendix: technologies Short Background
-
-
-### OpenAPI and Swagger
-
-Swagger is an implementation of OpenAPI. Swagger contains a tool that helps developers design, build, document, and consume RESTful Web services. Applications implemented based on OpenAPI interface, files can automatically generate documentation of methods, parameters and models. This helps keep the documentation, client libraries, and source code in sync.
-
+## Appendix: Technologies Short Background
 
 ### GitHub
 

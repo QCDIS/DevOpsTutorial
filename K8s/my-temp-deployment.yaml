@@ -6,35 +6,29 @@ metadata:
     kompose.version: 1.16.0 (0c01309)
   creationTimestamp: null
   labels:
-    io.kompose.service:  my-temp-service
-  name:  my-temp-service
+    io.kompose.service:  fair-cell-service
+  name:  fair-cell-service
 spec:
   selector:
     matchLabels:
-      io.kompose.service:  my-temp-service
+      io.kompose.service:  fair-cell-service
   replicas: 1
-  strategy:
-        type: RollingUpdate
-        rollingUpdate:
-            maxSurge: 50%
-            maxUnavailable: 50%
-  minReadySeconds: 10
-  revisionHistoryLimit: 3
   template:
     metadata:
       creationTimestamp: null
       labels:
-        io.kompose.service:  my-temp-service
+        io.kompose.service:  fair-cell-service
     spec:
       containers:
-      - env:
-        - name: MONGO_HOST
-          value: mongo  
-        image: qcdis/my-temp-service
-        name:  my-temp-service
+      - image: cloudcells/classifiers
+        name:  fair-cell-service
         imagePullPolicy: Always
         ports:
-        - containerPort: 8082
-        resources: {}
+        - containerPort: 8888
+        resources:
+          limits:
+            cpu: "30m"
+          requests:
+            cpu: "30m"
       restartPolicy: Always
 status: {}

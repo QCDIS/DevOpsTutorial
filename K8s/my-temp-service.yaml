@@ -2,15 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    io.kompose.service: my-temp-service
-  name: my-temp-service
+    io.kompose.service: fair-cell-service
+  name: fair-cell-service
 spec:
-  type: NodePort  
+  type: NodePort
   ports:
-  - port: 8082
+  - port: 8888
     protocol: TCP
     name: http
   selector:
-    io.kompose.service: my-temp-service
+    io.kompose.service: fair-cell-service
 status:
   loadBalancer: {} 
