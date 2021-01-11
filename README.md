@@ -473,7 +473,8 @@ ab -n 5 -r -c 5 -g out.data -s 1000 http://&lt;VM_PUBLIC_IP>:NODE_PORT
 ### Questions
 *   How much time did it take for the second benchmark ?  
 *   If we set the '--cpu-percent' to 50 % what will be the impact on the number of pods, and the total execution time 
-    of the benchmark and why?
+    of the benchmark and why? Note: If you run the benchmark again make sure to redeploy the service so that the pods 
+    number is rest to one. 
 *   Currently, the RESTful Web Service runs over plain http meaning that the communication between any client and 
     the RESTful Web Service is unsecured. How would you enable SSL encryption, meaning that the RESTful Web Service 
     will run from https without modifying the service's source code?
