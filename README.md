@@ -312,7 +312,7 @@ kubectl create -f .
 ```
 
 
-This should create the MongoDB and my-temp-service deployments and services. To see what is running on the cluster 
+This should create the my-temp-service deployments and services. To see what is running on the cluster 
 type:
 
 ```
@@ -333,20 +333,6 @@ deployment.apps/fair-cell-service   0/1     1            0           11s
 
 NAME                                           DESIRED   CURRENT   READY   AGE
 replicaset.apps/fair-cell-service-7f5bbfb44d   1         1         0       11s
-alogo@kif:~/workspace/DevOpsTutorial/K8s$ kubectl get all
-NAME                                     READY   STATUS              RESTARTS   AGE
-pod/fair-cell-service-7f5bbfb44d-rhlcm   0/1     ContainerCreating   0          33s
-
-NAME                        TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
-service/fair-cell-service   NodePort    10.102.118.62   <none>        8888:31783/TCP   101s
-service/kubernetes          ClusterIP   10.96.0.1       <none>        443/TCP          133d
-
-NAME                                READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/fair-cell-service   0/1     1            0           34s
-
-NAME                                           DESIRED   CURRENT   READY   AGE
-replicaset.apps/fair-cell-service-7f5bbfb44d   1         1         0       34s
-
 ```
 
 
@@ -364,7 +350,7 @@ Now we can benchmark the service. To do that, install apache2-utils:
 ```bash
 sudo apt-get install apache2-utils
 ```
-More infomration about the tool can be found here: https://www.tutorialspoint.com/apache_bench/index.htm 
+More information about the tool can be found here: https://www.tutorialspoint.com/apache_bench/index.htm 
 
 
 Run the benchmark:
@@ -427,7 +413,7 @@ kubectl -n kube-system top pods
 If you don't get any results you may wait for several minutes for the server to deploy.
 
 
-Enable autoscaling with 30 % cpu utilization and max 10 pods:
+Enable autoscaling with 10 % cpu utilization and max 10 pods:
 ```bash
 kubectl autoscale deployment.apps/fair-cell-service --cpu-percent=10 --min=1 --max=10
 ```
