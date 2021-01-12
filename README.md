@@ -177,14 +177,17 @@ The output should look like this:
 
 
 ```
-NAME                        READY   STATUS              RESTARTS   AGE
-pod/nginx-f89759699-5cqgg   0/1     ContainerCreating   0          6s
+NAME                         READY   STATUS              RESTARTS   AGE
+pod/nginx-6799fc88d8-wttct   0/1     ContainerCreating   0          6s
+
 NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
-service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   4m37s
+service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   134d
+
 NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/nginx   0/1     1            0           6s
-NAME                              DESIRED   CURRENT   READY   AGE
-replicaset.apps/nginx-f89759699   1         1         0       6
+deployment.apps/nginx   0/1     1            0           7s
+
+NAME                               DESIRED   CURRENT   READY   AGE
+replicaset.apps/nginx-6799fc88d8   1         1         0       7s
 ```
 
 
@@ -198,14 +201,17 @@ The output should look like this:
 
 
 ```
-NAME                        READY   STATUS    RESTARTS   AGE
-pod/nginx-f89759699-5cqgg   1/1     Running   0          2m1s
+NAME                         READY   STATUS    RESTARTS   AGE
+pod/nginx-6799fc88d8-wttct   1/1     Running   0          39s
+
 NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
-service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   6m32s
+service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   134d
+
 NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/nginx   1/1     1            1           2m1s
-NAME                              DESIRED   CURRENT   READY   AGE
-replicaset.apps/nginx-f89759699   1         1         1       2m1s
+deployment.apps/nginx   1/1     1            1           40s
+
+NAME                               DESIRED   CURRENT   READY   AGE
+replicaset.apps/nginx-6799fc88d8   1         1         1       40s
 ```
 
 
@@ -230,14 +236,17 @@ You should see the among others the line:
 
 
 ```
-service/nginx        NodePort    10.106.12.71   <none>        80:31122/TCP   8s
+service/nginx        NodePort    10.98.203.181   <none>        80:30155/TCP   6s
 ```
 
 
-This means that port 80 is mapped on port 31122 of each node in the K8s cluster. Note that the mapped port will be 
+This means that port 80 is mapped on port 30155 of each node in the K8s cluster. Note that the mapped port will be 
 different on your deployment. Now we can access Nginx from http://&lt;VM_PUBLIC_IP>:NODE_PORT.
 
-
+You may now delete the Nginx service by using:
+```
+kubectl delete service/nginx
+```
 
 ## Deploy RESTful Web Service on K8s Cluster
 
