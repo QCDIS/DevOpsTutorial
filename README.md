@@ -69,7 +69,7 @@ microk8s kubectl get nodes
 
 ## Install Kubernetes
 If you installed microk8s you do not need execute this step to install Kubernetes
-```
+
 
 If you haven't already install docker on your VM install it using these 
 instructions:[ https://linoxide.com/containers/install-docker-ubuntu-20-04/](https://linoxide.com/containers/install-docker-ubuntu-20-04/)
