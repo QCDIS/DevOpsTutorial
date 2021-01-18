@@ -48,7 +48,10 @@ Try a sudo command:
 ```
 sudo apt update
 ```
-
+Install git:
+```
+sudo apt install git
+```
 
 ## Install microk8s
 ```
