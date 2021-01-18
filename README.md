@@ -54,6 +54,8 @@ sudo apt install git
 ```
 
 ## Install microk8s
+
+If you install microk8s you do not need to do the next step to install Kubernetes
 ```
 sudo snap install microk8s --classic 
 ```
@@ -66,8 +68,8 @@ microk8s kubectl get nodes
 
 
 ## Install Kubernetes
-
-
+If you installed microk8s you do not need execute this step to install Kubernetes
+```
 
 If you haven't already install docker on your VM install it using these 
 instructions:[ https://linoxide.com/containers/install-docker-ubuntu-20-04/](https://linoxide.com/containers/install-docker-ubuntu-20-04/)
@@ -168,6 +170,7 @@ envri15   Ready    master   3m14s   v1.18.5
 
 ### Test K8s Cluster
 
+If you installed microk8s you'll need to include microk8s before every command 
 This is a basic Kubernetes deployment of Nginx. On the master node create an Nginx deployment:
 
 
