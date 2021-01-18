@@ -20,7 +20,7 @@ spec:
         io.kompose.service:  fair-cell-service
     spec:
       containers:
-      - image: cloudcells/classifiers
+      - image:  REPOSITORY/DOCKER
         name:  fair-cell-service
         imagePullPolicy: Always
         ports:
