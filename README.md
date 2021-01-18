@@ -367,11 +367,11 @@ To delete all deployed resources simply type on the master K8s node:
 
 
 ```
-(microk8s) kubectl delete -f ./K8s
+(microk8s) kubectl delete -f .
 ```
 
 Now we can benchmark the service. To do that, install apache2-utils:
-```bash
+```
 sudo apt-get install apache2-utils
 ```
 More information about the tool can be found here: https://www.tutorialspoint.com/apache_bench/index.htm 
