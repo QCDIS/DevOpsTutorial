@@ -363,12 +363,7 @@ replicaset.apps/fair-cell-service-7f5bbfb44d   1         1         0       11s
 Note that in this output 'service/my-temp-service' is mapped to 31783 node port. In your case it may be a different 
 number. Now your service should be aveline on http://&lt;VM_PUBLIC_IP>:&lt;NODE_PORT>/
 
-To delete all deployed resources simply type on the master K8s node:
 
-
-```
-(microk8s) kubectl delete -f .
-```
 
 Now we can benchmark the service. To do that, install apache2-utils:
 ```
@@ -428,11 +423,11 @@ need to install the Kubernetes Metrics Server. To install go to folder 'metrics_
 
 When the Metrics Server is installed on the master, test if metrics are gathered by typing:
 ```bash
-kubectl top nodes
+(microk8s) kubectl top nodes
 ```
 and
 ```bash
-kubectl -n kube-system top pods
+(microk8s) kubectl -n kube-system top pods
 ```
 If you don't get any results you may wait for several minutes for the server to deploy.
 
@@ -477,7 +472,12 @@ On a separate shell re-run the benchmark:
 ab -n 5 -r -c 5 -g out.data -s 1000 http://&lt;VM_PUBLIC_IP>:NODE_PORT
 ```
 
+To delete all deployed resources go to folder K8s and simply type :
 
+
+```
+(microk8s) kubectl delete -f .
+```
 
 
 ### Questions
