@@ -259,7 +259,8 @@ different on your deployment. Now we can access Nginx from http://&lt;VM_PUBLIC_
 
 You may now delete the Nginx service by using:
 ```
-(microk8s) kubectl delete service/nginx
+(microk8s) kubectl delete service/nginx 
+(microk8s) kubectl delete deployment.apps/nginx
 ```
 
 ## Deploy RESTful Web Service on K8s Cluster
