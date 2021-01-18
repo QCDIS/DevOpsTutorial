@@ -15,7 +15,7 @@ We sincerely thank mr. Giuseppe Larocca and mr. Andrea Manzi from EGI to provide
 
 
 
-##Before you Begin
+## Before you Begin
 
 
 ### Install Ansible on a local machine (laptop)
@@ -172,7 +172,7 @@ This is a basic Kubernetes deployment of Nginx. On the master node create an Ngi
 
 
 ```
-kubectl create deployment nginx --image=nginx
+(microk8s) kubectl create deployment nginx --image=nginx
 ```
 
 
@@ -180,7 +180,7 @@ You may check your Nginx deployment by typing:
 
 
 ```
-kubectl get all
+(microk8s) kubectl get all
 ```
 
 
@@ -206,7 +206,7 @@ You will notice in the first line 'ContainerCreating'. This means that the K8s c
 Nginx container. After some minutes if you run again:
 
 ```bash
-kubectl get all
+(microk8s) kubectl get all
 ```
 The output should look like this:
 
@@ -231,7 +231,7 @@ Nginx to the outside world we should type:
 
 
 ```
-kubectl create service nodeport nginx --tcp=80:80
+(microk8s) kubectl create service nodeport nginx --tcp=80:80
 ```
 
 
@@ -239,7 +239,7 @@ To check your Nginx deployment type:
 
 
 ```
-kubectl get all
+(microk8s) kubectl get all
 ```
 
 
@@ -256,7 +256,7 @@ different on your deployment. Now we can access Nginx from http://&lt;VM_PUBLIC_
 
 You may now delete the Nginx service by using:
 ```
-kubectl delete service/nginx
+(microk8s) kubectl delete service/nginx
 ```
 
 ## Deploy RESTful Web Service on K8s Cluster
@@ -328,7 +328,7 @@ To create all the deployments and services type in the K8s folder:
 
 
 ```
-kubectl create -f .
+(microk8s) kubectl create -f .
 ```
 
 
@@ -336,7 +336,7 @@ This should create the my-temp-service deployments and services. To see what is 
 type:
 
 ```
-kubectl get all
+(microk8s) kubectl get all
 ```
 
 
@@ -363,7 +363,7 @@ To delete all deployed resources simply type on the master K8s node:
 
 
 ```
-kubectl delete -f ./K8s
+(microk8s) kubectl delete -f ./K8s
 ```
 
 Now we can benchmark the service. To do that, install apache2-utils:
@@ -419,7 +419,7 @@ To be able to set the minimum and maximum utilization levels (for CPU, mem. etc.
 need to install the Kubernetes Metrics Server. To install go to folder 'metrics_server' and deploy the Metrics Server:
 
 ```bash
-kubectl apply -f .
+(microk8s) kubectl apply -f .
 ```
 
 When the Metrics Server is installed on the master, test if metrics are gathered by typing:
@@ -435,11 +435,11 @@ If you don't get any results you may wait for several minutes for the server to 
 
 Enable autoscaling with 10 % cpu utilization and max 10 pods:
 ```bash
-kubectl autoscale deployment.apps/fair-cell-service --cpu-percent=10 --min=1 --max=10
+(microk8s) kubectl autoscale deployment.apps/fair-cell-service --cpu-percent=10 --min=1 --max=10
 ```
 Check that the horizontal pod autoscaler (hpa) is running:
 ```bash
-kubectl describe hpa fair-cell-service
+(microk8s) kubectl describe hpa fair-cell-service
 ````
 
 You should see something like this:
