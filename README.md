@@ -469,7 +469,7 @@ watch kubectl get all
 
 On a separate shell re-run the benchmark:
 ```bash
-ab -n 5 -r -c 5 -g out.data -s 1000 http://&lt;VM_PUBLIC_IP>:NODE_PORT
+ab -n 5 -r -c 5 -g out.data -s 1000 http://&lt;VM_PUBLIC_IP>:NODE_PORT/
 ```
 
 To delete all deployed resources go to folder K8s and simply type :
