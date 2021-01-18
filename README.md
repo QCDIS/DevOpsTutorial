@@ -38,7 +38,7 @@ Log in to your assigned VM using the keys you have received:
 
 
 ```
-ssh ubuntu@VM_IP -i id_ssh_rsa
+ssh USERNAME@VM_IP
 ```
 
 
@@ -50,8 +50,16 @@ sudo apt update
 ```
 
 
-Notice you do not need a password to run commands using sudo
+## Install microk8s
+```
+sudo snap install microk8s --classic 
+```
+Check your cluster. On the master node type:
 
+
+```
+microk8s kubectl get nodes
+```
 
 
 ## Install Kubernetes
